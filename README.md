@@ -35,4 +35,5 @@ Step 5: JWT Authentication
     - This has already been covered in the above step by using JWTManager, create_access_token, and jwt_required.
 
 
+Step 6: Frontend Routes and Authentication
 
