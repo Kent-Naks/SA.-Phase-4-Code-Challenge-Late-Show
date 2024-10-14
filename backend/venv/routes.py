@@ -8,3 +8,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret'  # Change this to a secure key
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+
+# Example User model for demonstration
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+
+
