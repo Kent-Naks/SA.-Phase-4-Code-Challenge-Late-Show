@@ -10,10 +10,20 @@ Step 2: Install dependencies.
 
 
 Step 3: Set up the Backend (Flask).
-     - Create a Flask app. Created a backend folder and set up a virtual environment:
+ A. Create a Flask app. 
+
+     - Created a backend folder and set up a virtual environment:
          = mkdir backend
          = cd backend
          = python3 -m venv venv
          = source venv/bin/activate
     - Install Flask and necessary libraries:
          = pip install Flask Flask-CORS Flask-SQLAlchemy Flask-JWT-Extended
+
+ B. Make Flask file structure
+     - In the backend folder, create a structure:
+        backend/
+          ── app.py
+          ── models.py
+          ── routes.py
+          ── config.py
