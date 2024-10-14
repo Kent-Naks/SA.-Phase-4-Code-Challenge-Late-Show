@@ -27,3 +27,12 @@ Step 3: Set up the Backend (Flask).
           ── models.py
           ── routes.py
           ── config.py
+
+
+Step 4: Create basic endpoints for login, register, and CRUD operations
+
+Step 5: JWT Authentication
+    - This has already been covered in the above step by using JWTManager, create_access_token, and jwt_required.
+
+
+
