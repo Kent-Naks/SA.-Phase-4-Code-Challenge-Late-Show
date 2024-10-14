@@ -34,3 +34,36 @@ def login():
         access_token = create_access_token(identity=user.username)
         return jsonify(access_token=access_token), 200
     return jsonify({'message': 'Invalid credentials'}), 401
+
+
+# Protected route to fetch user info
+@app.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    return jsonify({'username': user.username})
+
+# Update user info (PUT)
+@app.route('/user', methods=['PUT'])
+@jwt_required()
+def update_user():
+    data = request.get_json()
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    user.password = data['password']  # Hash the password in production
+    db.session.commit()
+    return jsonify({'message': 'User updated successfully'}), 200
+
+# Delete user account (DELETE)
+@app.route('/user', methods=['DELETE'])
+@jwt_required()
+def delete_user():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'message': 'User deleted successfully'}), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
