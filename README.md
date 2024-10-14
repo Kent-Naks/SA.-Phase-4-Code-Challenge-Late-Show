@@ -1,10 +1,19 @@
 # SA.-Phase-4-Code-Challenge-Late-Show. 
-Create the React app
+Step 1: Create the React app.
     - Run npx create-react-app frontend in my terminal to create a new React app.
     - Navigated to the frontend folder and removed unnecessary files (e.g., logo.svg, App.test.js) for a cleaner work.
 
-Install dependencies
+Step 2: Install dependencies.
     - react-router-dom for routing: npm install react-router-dom
     - axios for making HTTP requests: npm install axios
     - redux, react-redux for state management: npm install redux react-redux
-    - bootstrap: npm install bootstrap
+
+
+Step 3: Set up the Backend (Flask).
+     - Create a Flask app. Created a backend folder and set up a virtual environment:
+         = mkdir backend
+         = cd backend
+         = python3 -m venv venv
+         = source venv/bin/activate
+    - Install Flask and necessary libraries:
+         = pip install Flask Flask-CORS Flask-SQLAlchemy Flask-JWT-Extended
