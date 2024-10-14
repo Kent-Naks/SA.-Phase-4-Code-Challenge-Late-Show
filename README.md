@@ -38,4 +38,5 @@ Step 5: JWT Authentication
 Step 6: Frontend Routes and Authentication
        - Inluded routing structure with protected routes
        - Added login and registration pages with form handling
+       - Implement password reset functionalityx
 
