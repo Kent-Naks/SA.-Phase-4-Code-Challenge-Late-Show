@@ -17,4 +17,18 @@ function PasswordReset() {
     }
   };
 
-  
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+      />
+      {message && <p>{message}</p>}
+      <button type="submit">Send Reset Link</button>
+    </form>
+  );
+}
+
+export default PasswordReset;
