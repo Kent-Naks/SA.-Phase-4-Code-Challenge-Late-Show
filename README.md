@@ -1,42 +1,233 @@
-# SA.-Phase-4-Code-Challenge-Late-Show. 
-Step 1: Create the React app.
-    - Run npx create-react-app frontend in my terminal to create a new React app.
-    - Navigated to the frontend folder and removed unnecessary files (e.g., logo.svg, App.test.js) for a cleaner work.
+**The Show**
 
-Step 2: Install dependencies.
-    - react-router-dom for routing: npm install react-router-dom
-    - axios for making HTTP requests: npm install axios
-    - redux, react-redux for state management: npm install redux react-redux
+The Show project is a Flask API for managing and viewing episodes and guests of a fictional TV show. It includes endpoints to create, retrieve, and manage episodes, guests, and appearances on the show. The project uses SQLAlchemy for ORM and SQLite for data storage.
 
+**Table of Contents**
 
-Step 3: Set up the Backend (Flask).
- A. Create a Flask app. 
+***Features**
 
-     - Created a backend folder and set up a virtual environment:
-         = mkdir backend
-         = cd backend
-         = python3 -m venv venv
-         = source venv/bin/activate
-    - Install Flask and necessary libraries:
-         = pip install Flask Flask-CORS Flask-SQLAlchemy Flask-JWT-Extended
-
- B. Make Flask file structure
-     - In the backend folder, create a structure:
-        backend/
-          ── app.py
-          ── models.py
-          ── routes.py
-          ── config.py
+1. Project Structure
+2. Getting Started
+3. Installation
+4. Database Setup and Seeding
+5. Running the Application
 
 
-Step 4: Create basic endpoints for login, register, and CRUD operations
+6. API Endpoints
 
-Step 5: JWT Authentication
-    - This has already been covered in the above step by using JWTManager, create_access_token, and jwt_required.
+    1. GET /episodes
+    2. GET /episodes/
+    3. GET /guests
+    4. POST /appearances
+
+7. Models
+8. License
 
 
-Step 6: Frontend Routes and Authentication
-       - Inluded routing structure with protected routes
-       - Added login and registration pages with form handling
-       - Implement password reset functionalityx
+**Features**
+
+    i. RESTful API for managing episodes, guests, and appearances.
+    ii. Data validation and error handling.
+    iii. Seed data from a CSV file.
+    iv. Cascade deletion of related records.
+    v. JSON responses with nested data for relationships.
+
+
+**Project Structure**
+
+
+the_show/
+
+├── app.py               # Main Flask application file with routes
+├── config.py            # Application configuration
+├── models.py            # SQLAlchemy models for the project
+├── seed.py              # Script for seeding the database
+├── the_show.csv         # Sample CSV file for seeding data
+└── migrations/          # Migration folder created by Flask-Migrate
+
+
+**Installation**
+
+1. Clone the repository:
+
+
+git clone git@github.com:Donrioo90/the_show.git
+
+cd the_show
+
+2. Set up a virtual environment:
+
+pipenv install flask flask_sqlalchemy flask_migrate
+
+pipenv shell
+
+3. Install the dependencies:
+
+
+pipenv install flask flask_sqlalchemy flask_migrate
+
+
+**Database Setup and Seeding**
+
+1. Initialize the database migrations:
+
+
+    i. flask db init
+    ii. flask db migrate -m "Initial migration"
+    iii.flask db upgrade
+
+2. Seed the database:
+
+Run the seed.py script to populate the database with initial data from the_show.csv:
+
+
+python seed.py
+
+
+**Running the Application**
+
+To start the Flask server, run:
+
+python app.py
+
+The application will be available at http://127.0.0.1:5555.
+
+
+
+**API Endpoints**
+
+***GET /episodes***
+
+Retrieve a list of all episodes.
+
+Request: GET /episodes
+
+Response:
+
+
+[
+  {
+    "id": 1,
+    "date": "1/11/99",
+    "number": "1"
+  },
+  {
+    "id": 2,
+    "date": "1/12/99",
+    "number": "2"
+  }
+]
+***GET /episodes/***
+Retrieve details for a specific episode, including guest appearances.
+
+Request: GET /episodes/1
+
+Response:
+
+
+{
+  "id": 1,
+  "date": "1/11/99",
+  "number": "1",
+  "appearances": [
+    {
+      "id": 1,
+      "rating": 4,
+      "episode_id": 1,
+      "guest_id": 1,
+      "guest": {
+        "id": 1,
+        "name": "Michael J. Fox",
+        "occupation": "actor"
+      }
+    }
+  ]
+}
+
+***GET /guests***
+
+Retrieve a list of all guests.
+
+Request: GET /guests
+
+Response:
+
+
+[
+  {
+    "id": 1,
+    "name": "Michael J. Fox",
+    "occupation": "actor"
+  },
+  {
+    "id": 2,
+    "name": "Sandra Bernhard",
+    "occupation": "comedian"
+  }
+]
+
+
+***POST /appearances***
+
+Create a new appearance, linking a guest to an episode with a rating.
+
+Request: POST /appearances
+
+
+{
+  "rating": 5,
+  "episode_id": 1,
+  "guest_id": 2
+}
+Response:
+
+
+{
+  "id": 162,
+  "rating": 5,
+  "episode_id": 1,
+  "guest_id": 2,
+  "episode": {
+    "id": 1,
+    "date": "1/11/99",
+    "number": "1"
+  },
+  "guest": {
+    "id": 2,
+    "name": "Sandra Bernhard",
+    "occupation": "comedian"
+  }
+}
+
+**Validation Error Response:**
+
+
+{
+  "errors": ["validation errors"]
+}
+
+
+**Models**
+
+Episode
+1. id: Primary Key, Integer
+2. date: String, Non-null
+3. number: String, Non-null
+4. appearances: Relationship with Appearance (many-to-many)
+
+**Guest**
+1. id: Primary Key, Integer
+2. name: String, Non-null
+3. occupation: String, Non-null
+4. appearances: Relationship with Appearance (many-to-many)
+
+**Appearance**
+1. id: Primary Key, Integer
+2. rating: Integer, between 1 and 5
+3. episode_id: Foreign Key to Episode
+4. guest_id: Foreign Key to Guest
+
+
+**License**
+This project is licensed under the MIT License. See the LICENSE file for details.
 
