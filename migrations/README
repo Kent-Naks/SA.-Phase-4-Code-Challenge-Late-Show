@@ -1,1 +1,84 @@
-Single-database configuration for Flask.
+SA - Phase 4 Code Challenge: Late Show
+Overview
+This project is a full-stack Flask API designed to manage episodes, guests, and appearances for a TV show. The challenge primarily focuses on models, relationships, validations, RESTful routes, and proper JSON response structures. The provided models and relationships are based on an entity-relationship diagram, with guests appearing on various episodes through appearances.
+
+Project Structure
+The API allows you to:
+
+Fetch episode and guest data.
+Create new appearances (ratings) for guests on specific episodes.
+Ensure validation of appearance ratings and proper serialization of data with limited recursion.
+This project also involves setting up migrations and seeding the database using provided CSV data.
+
+Table of Contents
+Project Structure
+Setup
+Models
+Validations
+Routes
+Database Seeding
+Testing with Postman
+Environment Setup
+Contributing
+
+
+.
+── app.py                # Main application file where the routes are set up
+── config.py             # Configuration file for the application, including database setup
+── env.py                # Alembic environment configuration for migrations
+── models.py             # Database models for Episode, Guest, and Appearance
+── seed.py               # Script to seed the database using provided CSV data
+── the_show.csv          # Sample CSV file to populate the database
+── migrations/           # Folder containing migration scripts
+── README.md             # Documentation for the project
+── challenge-4-lateshow.postman_collection.json # Postman collection for testing
+
+
+
+SA - Phase 4 Code Challenge: Late Show
+Overview
+This project is a full-stack Flask API designed to manage episodes, guests, and appearances for a TV show. The challenge primarily focuses on models, relationships, validations, RESTful routes, and proper JSON response structures. The provided models and relationships are based on an entity-relationship diagram, with guests appearing on various episodes through appearances.
+
+Project Structure
+The API allows you to:
+
+Fetch episode and guest data.
+Create new appearances (ratings) for guests on specific episodes.
+Ensure validation of appearance ratings and proper serialization of data with limited recursion.
+This project also involves setting up migrations and seeding the database using provided CSV data.
+
+Table of Contents
+Project Structure
+Setup
+Models
+Validations
+Routes
+Database Seeding
+Testing with Postman
+Environment Setup
+Contributing
+Project Structure
+bash
+Copy code
+.
+├── app.py                # Main application file where the routes are set up
+├── config.py             # Configuration file for the application, including database setup
+├── env.py                # Alembic environment configuration for migrations
+├── models.py             # Database models for Episode, Guest, and Appearance
+├── seed.py               # Script to seed the database using provided CSV data
+├── the_show.csv          # Sample CSV file to populate the database
+├── migrations/           # Folder containing migration scripts
+├── README.md             # Documentation for the project
+└── challenge-4-lateshow.postman_collection.json # Postman collection for testing
+
+Setup
+Clone the repository
+Install dependencies
+Database setup
+    -flask db init
+    -flask db migrate
+    -flask db upgrade
+Seed the database
+    -python seed.py
+Run the application
+    - flask run
